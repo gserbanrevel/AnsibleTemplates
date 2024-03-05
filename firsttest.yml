@@ -1,7 +1,8 @@
 ---
-- name: Ping all hosts
-  hosts: all
-  tasks:
-    - name: Ping
-      ping: 10.219.205.28
+- name: Check Connection to Host
+  hosts: 10.219.205.28
+  gather_facts: no
 
+  tasks:
+    - name: Ping the Host
+      ping:
