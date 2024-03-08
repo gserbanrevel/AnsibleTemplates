@@ -1,0 +1,8 @@
+---
+- name: Universal Ansible Playbook
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Check reachability
+      ping:
