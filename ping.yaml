@@ -1,9 +1,6 @@
----
-- name: Universal Ansible Playbook
-  hosts: all
-  
- 
-  
+- hosts: all
+  become :true
   tasks:
-    - name: Check reachability
-      ping:
+
+  - name:ping
+    ping:
