@@ -1,5 +1,8 @@
-- name: Install htop
-  apt:
-    name: htop
-    state: present
+---
+- hosts: all
   become: yes
+  tasks:
+    - name: Install htop
+      apt:
+        name: htop
+        state: present
