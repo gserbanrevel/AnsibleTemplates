@@ -1,6 +1,9 @@
 ---
 - hosts: all
   become: yes
+  vars:
+    ansible_ssh_user: ubuntutestuser
+    # ansible_ssh_pass: mypassword # Only if necessary and ensure it's encrypted
   tasks:
     - name: Install htop
       apt:
