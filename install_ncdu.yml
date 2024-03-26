@@ -1,0 +1,13 @@
+---
+- name: install_ncdu
+  hosts: all
+  tasks:
+    - name: Task 1
+      apt:
+        name: ncdu
+        state: present
+        update_cache: yes
+        force_apt_get: yes
+        autoclean: yes
+        autoremove: yes
+  
