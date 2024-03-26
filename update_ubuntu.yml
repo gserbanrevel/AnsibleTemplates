@@ -1,6 +1,6 @@
 ---
 - name: Update and upgrade all Ubuntu servers to the latest version
-  hosts: ubuntu_servers
+  hosts: all
   become: yes
 
   tasks:
