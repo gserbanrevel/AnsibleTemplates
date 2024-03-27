@@ -4,7 +4,7 @@
   tasks:
     - name: Task 1
       apt:
-        name: upgrade
+        name: update
         state: present
         update_cache: yes
         force_apt_get: yes
