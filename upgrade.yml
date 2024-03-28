@@ -1,13 +1,14 @@
 ---
-- name: Update and upgrade all packages on all hosts
+- name: Update and Upgrade All Packages
   hosts: all
+  become: yes  # Enable privilege escalation
   tasks:
-    - name: Update package lists
+    - name: Update the package list
       ansible.builtin.apt:
         update_cache: yes
-      become: no
+        cache_valid_time: 3600 # Optional: avoids repeating update if done within the last hour
 
-    - name: Upgrade all packages
+    - name: Upgrade all packages to the latest version
       ansible.builtin.apt:
         upgrade: dist
-      become: no
+        force_apt_get: yes  # Use apt-get instead of aptitude
