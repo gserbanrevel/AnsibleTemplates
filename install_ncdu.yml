@@ -1,6 +1,8 @@
 ---
 - name: install_ncdu
   hosts: all
+  become: yes
+  become_method: sudo
   tasks:
     - name: Task 1
       apt:
