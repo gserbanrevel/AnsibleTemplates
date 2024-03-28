@@ -4,11 +4,13 @@
   become: yes  # Enable privilege escalation
   tasks:
     - name: Update the package list
+      become: yes
       ansible.builtin.apt:
         update_cache: yes
         cache_valid_time: 3600 # Optional: avoids repeating update if done within the last hour
 
     - name: Upgrade all packages to the latest version
+      become: yes
       ansible.builtin.apt:
         upgrade: dist
         force_apt_get: yes  # Use apt-get instead of aptitude
