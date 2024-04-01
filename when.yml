@@ -1,0 +1,12 @@
+- name: Gather the package facts
+  ansible.builtin.setup:
+    gather_subset:
+      - '!all'
+      - '!any'
+      - 'packages'
+      
+- name: Update a specific package if it is installed and old
+  ansible.builtin.package:
+    name: ncdu
+    state: latest
+  when: "'ncdu' in ansible_facts.packages"
