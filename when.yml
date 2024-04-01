@@ -1,12 +1,18 @@
-- name: Gather the package facts
-  ansible.builtin.setup:
-    gather_subset:
-      - '!all'
-      - '!any'
-      - 'packages'
-      
-- name: Update a specific package if it is installed and old
-  ansible.builtin.package:
-    name: ncdu
-    state: latest
-  when: "'ncdu' in ansible_facts.packages"
+---
+- name: Update package if installed and old
+  hosts: your_target_hosts
+  gather_facts: no  # If you want to explicitly gather package facts
+
+  tasks:
+    - name: Gather the package facts
+      ansible.builtin.setup:
+        gather_subset: 
+          - '!all'
+          - '!any'
+          - 'packages'
+
+    - name: Update a specific package if it is installed and old
+      ansible.builtin.package:
+        name: ncdu
+        state: latest
+      when: "'ncdu' in ansible_facts.packages"
