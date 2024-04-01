@@ -1,18 +1,17 @@
 ---
-- name: Update package if installed and old
+- name: Update package if installed
   hosts: all
-  gather_facts: no  # If you want to explicitly gather package facts
-
+  become: yes  # if you need root privileges
   tasks:
-    - name: Gather the package facts
-      ansible.builtin.setup:
-        gather_subset: 
-          - '!all'
-          - '!any'
-          - 'packages'
+    - name: Check if 'ncdu' is installed
+      ansible.builtin.command: dpkg -l ncdu
+      register: dpkg_result
+      failed_when: dpkg_result.rc != 0 and dpkg_result.rc != 1
+      changed_when: false
+      check_mode: false
 
-    - name: Update a specific package if it is installed and old
-      ansible.builtin.package:
+    - name: Update 'ncdu' if it is installed
+      ansible.builtin.apt:
         name: ncdu
         state: latest
-      when: "'ncdu' in ansible_facts.packages"
+      when: dpkg_result.rc == 0
