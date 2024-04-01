@@ -1,6 +1,6 @@
 ---
 - name: Update package if installed and old
-  hosts: your_target_hosts
+  hosts: all
   gather_facts: no  # If you want to explicitly gather package facts
 
   tasks:
