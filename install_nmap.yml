@@ -1,6 +1,8 @@
 ---
 - name: install_nmap
   hosts: all
+  become: yes       # This enables privilege escalation
+  become_method: sudo  # This specifies to use sudo for becoming another user
   tasks:
     - name: Task 1
       apt:
